@@ -1,0 +1,9 @@
+.app {
+  align-items: center;
+  background: #f8fafc;
+  display: flex;
+  inset: 0;
+  justify-content: center;
+  padding: 1.5rem;
+  position: fixed;
+}
