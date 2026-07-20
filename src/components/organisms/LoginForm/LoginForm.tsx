@@ -14,6 +14,7 @@ export const LoginForm: React.FC = () => {
     email: '',
     password: '',
   });
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -41,20 +42,30 @@ export const LoginForm: React.FC = () => {
           type="email"
           value={formValues.email}
         />
-        <FormField
-          autoComplete="current-password"
-          id="password"
-          label="Passwort"
-          onChange={(event) =>
-            setFormValues((currentValues) => ({
-              ...currentValues,
-              password: event.target.value,
-            }))
-          }
-          placeholder="Dein Passwort"
-          type="password"
-          value={formValues.password}
-        />
+        <div className={styles.passwordField}>
+          <FormField
+            autoComplete="current-password"
+            id="password"
+            label="Passwort"
+            onChange={(event) =>
+              setFormValues((currentValues) => ({
+                ...currentValues,
+                password: event.target.value,
+              }))
+            }
+            placeholder="Dein Passwort"
+            type={isPasswordVisible ? 'text' : 'password'}
+            value={formValues.password}
+          />
+          <button
+            aria-pressed={isPasswordVisible}
+            className={styles.passwordVisibilityControl}
+            onClick={() => setIsPasswordVisible((isVisible) => !isVisible)}
+            type="button"
+          >
+            {isPasswordVisible ? 'Passwort ausblenden' : 'Passwort anzeigen'}
+          </button>
+        </div>
       </div>
 
       <Button type="submit">Einloggen</Button>
